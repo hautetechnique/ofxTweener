@@ -11,11 +11,6 @@
 
 ofxTweener Tweener;
 
-// event on complete
-// quadbezier functie
-// scale is nu niet netjes
-
-
 ofxTweener::ofxTweener(){
 	_scale = 1;
 	setMode(TWEENMODE_OVERRIDE);
