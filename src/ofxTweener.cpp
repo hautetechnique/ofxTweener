@@ -120,28 +120,6 @@ float ofxTweener::bezier(float b, float e, float t, float p){
 	return b + t*(2*(1-t)*(p-b) + t*(e - b));
 }
 
-/*
-float ofxTweener::bezier_vector(float b, float e, float t, vector<float> p){
-	var ip:uint = Math.floor(t * p.length); // Position on the bezier list
-	var it:Number = (t - (ip * (1 / p.length))) * p.length; // t inside this ip
-	var p1:Number, p2:Number;
-	if (ip == 0) {
-		// First part: belongs to the first control point, find second midpoint
-		p1 = b;
-		p2 = (p[0]+p[1])/2;
-	} else if (ip == p.length - 1) {
-		// Last part: belongs to the last control point, find first midpoint
-		p1 = (p[ip-1]+p[ip])/2;
-		p2 = e;
-	} else {
-		// Any middle part: find both midpoints
-		p1 = (p[ip-1]+p[ip])/2;
-		p2 = (p[ip]+p[ip+1])/2;
-	}
-	return p1+it*(2*(1-it)*(p[ip]-p1) + it*(p2 - p1));
-}
-*/
-
 void ofxTweener::removeAllTweens(){
 	tweens.clear();
 }
