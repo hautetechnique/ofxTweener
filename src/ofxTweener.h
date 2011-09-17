@@ -3,7 +3,6 @@
  *  openFrameworks
  *
  *  Created by Sander ter Braak on 26-08-10.
- *  Copyright 2010 hautetechnique.com. All rights reserved.
  *
  */
 
