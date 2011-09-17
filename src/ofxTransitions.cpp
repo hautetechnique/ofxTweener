@@ -1,12 +1,3 @@
-/*
- *  ofxTransitions.cpp
- *  openFrameworks
- *
- *  Created by Sander ter Braak on 27-08-10.
- *  Copyright 2010 hautetechnique.com. All rights reserved.
- *
- */
-
 #include "ofxTransitions.h"
 
 float ofxTransitions::linear(float t,float b , float c, float d){
