@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8141E0D8-2632-4BB5-8753-CC48236A3ACF</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F69848794C3B8E65777F64980F34D78754B55DEA</key>
+		<string>https://github.com/hautetechnique/ofxTweener.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F69848794C3B8E65777F64980F34D78754B55DEA</key>
+		<string>ofxTweener/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/hautetechnique/ofxTweener.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F69848794C3B8E65777F64980F34D78754B55DEA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F69848794C3B8E65777F64980F34D78754B55DEA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxTweener</string>
+		</dict>
+	</array>
+</dict>
+</plist>
