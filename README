@@ -1,5 +1,10 @@
 ofxTweener is the missing tween class for open frameworks. It's implementation is much like AS3's Tweener and TweenMax. It uses a single, static tweenclass that controls all tweens using references. That means that there's no need to update the individual vars. 
 
+v1.1 06-11-2014
+
+Updated example project to be OF 0.08 compatible
+
+
 v1.0 06-08-2011
 
 functions:
@@ -12,5 +17,5 @@ functions:
 	- override or sequence mode
 	- bezier tweening
 	
-ofxTweener works with OF 0.06 and 0.07. It has been tested on OSX 10.6~7 and Windows as well. The included example is a Xcode 4 OF 0.07 project.
+ofxTweener works with OF 0.06, 0.07 and 0.08. It has been tested on OSX 10.6~10 and Windows as well. The included example is a Xcode 6 OF 0.08 project.
 	
