@@ -53,7 +53,9 @@ private:
 	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, void (^callback)(float * arg)=NULL);
 	float				bezier(float b, float e, float t, float p);
 	vector<Tween>		tweens;
+#ifndef __WIN32
     std::map<float *, void (^)(float * arg)>   callbacks;
+#endif
     
 };
 
