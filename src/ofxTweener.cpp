@@ -15,7 +15,7 @@ ofxTweener::ofxTweener(){
 	setMode(TWEENMODE_OVERRIDE);
 }
 
-#ifndef __WIN32
+#ifndef _WIN32
 void ofxTweener::addTween(float &var, float to, float time, void (^callback)(float * arg)){
 	addTween(var,to,time, &ofxTransitions::easeOutExpo ,0,0,false, callback);
 }

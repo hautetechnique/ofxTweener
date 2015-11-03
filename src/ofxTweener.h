@@ -30,12 +30,21 @@ class ofxTweener : public ofBaseApp {
 public:
 	
 	ofxTweener();
-	
+
+#ifndef _WIN32
 	void addTween(float &var, float to, float time, void (^callback)(float * arg)=NULL);
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), void (^callback)(float * arg)=NULL);
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, void (^callback)(float * arg)=NULL);
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, void (^callback)(float * arg)=NULL);
-    
+#else
+	void addTween(float &var, float to, float time);
+	
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float));
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay);
+	void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint);
+	
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier);
+#endif
 	
 	void removeTween(float &var);	
 	void setTimeScale(float scale);
@@ -50,10 +59,10 @@ private:
 	float				_scale;
 	ofxTransitions		a;
 	bool				_override;
-	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, void (^callback)(float * arg)=NULL);
 	float				bezier(float b, float e, float t, float p);
 	vector<Tween>		tweens;
-#ifndef __WIN32
+#ifndef _WIN32
+	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, void (^callback)(float * arg)=NULL);
     std::map<float *, void (^)(float * arg)>   callbacks;
 #endif
     
