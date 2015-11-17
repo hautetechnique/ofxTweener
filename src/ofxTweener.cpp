@@ -110,21 +110,21 @@ void ofxTweener::update(){
 
 #else
 
-void ofxTweener::addTween(float &var, float to, float time){
-	addTween(var,to,time, &ofxTransitions::easeOutExpo ,0,0,false);
+void ofxTweener::addTween(float &var, float to, float time, std::function<void(float *arg)> callback){
+	addTween(var,to,time, &ofxTransitions::easeOutExpo ,0,0,false, callback);
 }
 
-void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float)){
-	addTween(var,to,time,ease,0,0,false);
+void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), std::function<void(float *arg)> callback){
+	addTween(var,to,time,ease,0,0,false, callback);
 }
-void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay){
-	addTween(var,to,time,ease,delay,0,false);
+void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, std::function<void(float *arg)> callback){
+	addTween(var,to,time,ease,delay,0,false, callback);
 }
-void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint){
-	addTween(var,to,time,ease,delay, bezierPoint, true);
+void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, std::function<void(float *arg)> callback){
+	addTween(var,to,time,ease,delay, bezierPoint, true, callback);
 }
 
-void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier){
+void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, void std::function<void(float *arg)> callbacl){
 	float from = var;
 	float _delay = delay;
 	Poco::Timestamp latest = 0;
@@ -164,6 +164,8 @@ void ofxTweener::addTween(float &var, float to, float time, float (ofxTransition
 	t._timestamp = Poco::Timestamp() + ((delay / _scale) * 1000000.0f) ;
 	t._duration = (time / _scale) * 1000000.0f;
 	
+	callbacks[t._var] = callback;
+
 	tweens.push_back(t);
 }
 
@@ -183,7 +185,11 @@ void ofxTweener::update(){
 				}
 			}
 			if(!found) tweens[i]._var[0] = tweens[i]._to;
-			
+			map<float *,std::function<void(float *arg)>>::iterator it = callbacks.find(tweens[i]._var);
+            if(it != callbacks.end()) {
+                it->second(tweens[i]._var);
+                callbacks.erase(it);
+            }
 			tweens.erase(tweens.begin() + i);
 			
 		}

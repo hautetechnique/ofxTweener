@@ -8,6 +8,9 @@
 
 #include "ofMain.h"
 #include "ofxTransitions.h"
+#ifndef _WIN32
+#include <functional>
+#endif
 
 #ifndef _OFXTWEEN
 #define _OFXTWEEN
@@ -37,13 +40,13 @@ public:
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, void (^callback)(float * arg)=NULL);
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, void (^callback)(float * arg)=NULL);
 #else
-	void addTween(float &var, float to, float time);
+	void addTween(float &var, float to, float time, void std::function<void(float arg)> callbacl);
 	
-	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float));
-	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay);
-	void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint);
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), std::function<void(float arg)> callback);
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, std::function<void(float arg)> callbacl);
+	void ofxTweener::addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, std::function<void(float arg)> callback);
 	
-	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier);
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, std::function<void(float arg)> callback);
 #endif
 	
 	void removeTween(float &var);	
@@ -62,8 +65,11 @@ private:
 	float				bezier(float b, float e, float t, float p);
 	vector<Tween>		tweens;
 #ifndef _WIN32
-	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, void (^callback)(float * arg)=NULL);
+	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, std::function<void(float arg)> callback);
     std::map<float *, void (^)(float * arg)>   callbacks;
+#else
+	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, std::function<void(float arg)> callback);
+	std::map<float *, std::function<void(float * arg)> >   callbacks;
 #endif
     
 };
