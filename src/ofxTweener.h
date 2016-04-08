@@ -8,6 +8,7 @@
 
 #include "ofMain.h"
 #include "ofxTransitions.h"
+#include <Poco/Timestamp.h>
 
 #ifndef _OFXTWEEN
 #define _OFXTWEEN
