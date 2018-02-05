@@ -32,7 +32,7 @@ class ofxTweener : public ofBaseApp {
 public:
 	
 	ofxTweener();
-	
+
 	void addTween(float &var, float to, float time, std::function<void(float *arg)> callback = nullptr);
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), std::function<void(float *arg)> callback = nullptr);
 	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, std::function<void(float *arg)> callback = nullptr);

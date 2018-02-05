@@ -34,30 +34,30 @@ void ofxTweener::addTween(float &var, float to, float time, float (ofxTransition
 	float _delay = delay;
 	Poco::Timestamp latest = 0;
 	
-	for(int i = 0; i < tweens.size(); ++i){
-		if(tweens[i]._var == &var) {
+	for (auto &tween : tweens) {
+		if (tween._var == &var) {
 			// object already tweening, just kill the old one
-			if(_override){
-				tweens[i]._from = from;
-				tweens[i]._to = to;
-				tweens[i]._by = bezierPoint;
-				tweens[i]._useBezier = useBezier;
-				tweens[i]._easeFunction = ease;
-				tweens[i]._timestamp = Poco::Timestamp() + ((delay / _scale) * 1000000.0f) ;
-				tweens[i]._duration = (time / _scale) * 1000000.0f;
+			if (_override) {
+				tween._from = from;
+				tween._to = to;
+				tween._by = bezierPoint;
+				tween._useBezier = useBezier;
+				tween._easeFunction = ease;
+				tween._timestamp = Poco::Timestamp() + ((delay / _scale) * 1000000.0f);
+				tween._duration = (time / _scale) * 1000000.0f;
 				return;
 			}
 			else {
 				//sequence mode
-				if((tweens[i]._timestamp + tweens[i]._duration) > latest){
-					latest = (tweens[i]._timestamp + tweens[i]._duration);
-					delay = _delay + ((tweens[i]._duration - tweens[i]._timestamp.elapsed())/1000000.0f);
-					from = tweens[i]._to;
-				}	
+				if ((tween._timestamp + tween._duration) > latest) {
+					latest = (tween._timestamp + tween._duration);
+					delay = _delay + ((tween._duration - tween._timestamp.elapsed()) / 1000000.0f);
+					from = tween._to;
+				}
 			}
 		}
 	}
-	
+
 	Tween t;
 	
 	t._var = &var;
