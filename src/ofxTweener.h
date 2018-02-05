@@ -9,6 +9,7 @@
 #include "ofMain.h"
 #include "ofxTransitions.h"
 #include <Poco/Timestamp.h>
+#include <functional>
 
 #ifndef _OFXTWEEN
 #define _OFXTWEEN
@@ -31,11 +32,11 @@ class ofxTweener : public ofBaseApp {
 public:
 	
 	ofxTweener();
-	
-	void addTween(float &var, float to, float time, void (^callback)(float * arg)=NULL);
-	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), void (^callback)(float * arg)=NULL);
-	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, void (^callback)(float * arg)=NULL);
-	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, void (^callback)(float * arg)=NULL);
+
+	void addTween(float &var, float to, float time, std::function<void(float *arg)> callback = nullptr);
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), std::function<void(float *arg)> callback = nullptr);
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, std::function<void(float *arg)> callback = nullptr);
+	void addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, std::function<void(float *arg)> callback = nullptr);
     
 	
 	void removeTween(float &var);	
@@ -51,10 +52,10 @@ private:
 	float				_scale;
 	ofxTransitions		a;
 	bool				_override;
-	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, void (^callback)(float * arg)=NULL);
+	void				addTween(float &var, float to, float time, float (ofxTransitions::*ease) (float,float,float,float), float delay, float bezierPoint, bool useBezier, std::function<void(float *arg)> callback = nullptr);
 	float				bezier(float b, float e, float t, float p);
 	vector<Tween>		tweens;
-    std::map<float *, void (^)(float * arg)>   callbacks;
+    std::map<float *, std::function<void(float *arg)>>   callbacks;
     
 };
 
