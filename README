@@ -1,5 +1,9 @@
 ofxTweener is the missing tween class for open frameworks. It's implementation is much like AS3's Tweener and TweenMax. It uses a single, static tweenclass that controls all tweens using references. That means that there's no need to update the individual vars. 
 
+v1.2 05-02-2018
+
+Added one more example project to be OF 0.09 and 0.10 compatible
+
 v1.1 06-11-2014
 
 Updated example project to be OF 0.08 compatible
